@@ -24,7 +24,8 @@
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script defer src="script.js?v=2026-06-05-2"></script>
+    <script defer src="temporary-access.js?v=2026-10-12-1"></script>
+    <script defer src="script.js?v=2026-10-12-1"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -122,7 +123,25 @@
           </div>
         </section>
 
+        <section class="glass-card temporary-entry-card" id="temporaryEntryCard">
+          <button class="secondary-btn" id="continueWithoutAccountBtn" type="button">Ohne Account fortfahren</button>
+          <form id="temporaryAccessForm" class="form-grid hidden">
+            <h2>Temporärer Mitarbeiter</h2>
+            <p>Erfasse deine Angaben. Mit denselben Angaben kannst du deine Rapporte später wieder öffnen.</p>
+            <label class="field"><span>Vorname</span><input id="temporaryFirstName" type="text" autocomplete="given-name" maxlength="100" required /></label>
+            <label class="field"><span>Nachname</span><input id="temporaryLastName" type="text" autocomplete="family-name" maxlength="100" required /></label>
+            <label class="field"><span>Geburtsdatum</span><input id="temporaryBirthDate" type="date" autocomplete="bday" min="1900-01-01" required /></label>
+            <p id="temporaryAccessError" role="alert"></p>
+            <div class="auth-actions"><button id="temporaryAccessSubmitBtn" class="primary-btn" type="submit">Fortfahren</button><button id="cancelTemporaryAccessBtn" class="link-btn" type="button">Zurück zum Login</button></div>
+          </form>
+        </section>
+
         <section class="app-view hidden" id="appView">
+          <section id="temporaryIdentityBanner" class="glass-card hidden" aria-live="polite">
+            <strong>Temporärer Mitarbeiter</strong>
+            <p id="temporaryIdentityLabel"></p>
+            <button id="leaveTemporaryAccessBtn" class="link-btn" type="button">Temporären Zugang verlassen</button>
+          </section>
           <header class="app-nav">
             <button
               id="navMenuToggleBtn"
@@ -565,6 +584,7 @@
             </div>
           </div>
 
+          <button class="secondary-btn" id="zeroHoursBtn" type="button">0 Stunden buchen</button>
           <div id="normalTimeFields">
             <div class="field-row split-pair two-columns">
               <label class="field compact-field">
